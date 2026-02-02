@@ -1,0 +1,103 @@
+---
+const faqs = [
+  {
+    question: "Do you buy broken jewelry?",
+    answer: "Yes, we buy gold and silver jewelry regardless of condition. Broken chains, single earrings, and damaged pieces are all welcome. We pay based on the precious metal content."
+  },
+  {
+    question: "What forms of payment do you accept?",
+    answer: "We accept cash, checks, and can arrange wire transfers for larger transactions. For purchases, we accept cash and most major payment methods."
+  },
+  {
+    question: "Do I need an appointment?",
+    answer: "No appointment is necessary during our regular business hours (Mon, Tue, Wed, Fri: 10am-5pm). However, for large collections or estate appraisals, we recommend calling ahead so we can dedicate proper time to evaluate your items."
+  },
+  {
+    question: "How are prices determined?",
+    answer: "All offers are transparent and based on current market prices. For bullion, we use live spot prices. For numismatic (collector) coins, we consider rarity, condition, and current market demand. We're confident we pay more than pawn shops for quality coins."
+  },
+  {
+    question: "What if I don't like your offer?",
+    answer: "There's absolutely no obligation to sell. We provide free evaluations and you're welcome to take time to consider our offer or get a second opinion. We believe in building long-term relationships based on trust."
+  },
+  {
+    question: "Do you offer house calls?",
+    answer: "Yes! We offer house calls for your convenience, especially helpful for larger collections, estate situations, or if you're unable to visit our shop. Call 208-810-5351 to schedule."
+  }
+];
+
+// Generate FAQ schema for SEO
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section class="py-12 md:py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-8 md:mb-12" data-reveal="fade-up">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-text-dark/70 text-base md:text-lg max-w-2xl mx-auto">
+        Have questions? We've got answers. If you don't see what you're looking for, give us a call.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="space-y-4" data-reveal="fade-up" data-reveal-delay="100">
+      {faqs.map((faq, index) => (
+        <details class="group bg-cream rounded-xl border border-cream-dark hover:border-gold/30 transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 sm:p-6 list-none min-h-[56px]">
+            <h3 class="font-semibold text-navy text-left pr-4">{faq.question}</h3>
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center group-open:bg-gold/30 transition-colors">
+              <svg class="w-5 h-5 text-gold-accent transform transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-5 pb-5 md:px-6 md:pb-6 pt-0">
+            <p class="text-text-dark/70 leading-relaxed">{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-8 md:mt-10" data-reveal="fade-up" data-reveal-delay="200">
+      <p class="text-text-dark/60 mb-4">Still have questions?</p>
+      <a
+        href="tel:208-810-5351"
+        class="inline-flex items-center gap-2 text-gold-accent hover:text-gold font-semibold transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        Call us at 208-810-5351
+      </a>
+    </div>
+  </div>
+
+  <!-- FAQ Schema for SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>
+
+<style>
+  /* Hide default marker */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary::marker {
+    display: none;
+  }
+</style>

@@ -14,9 +14,13 @@ const {
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0">
     <img
-      src="/images/hero-bg.jpg"
-      alt="Collection of gold and silver coins"
+      src="/images/hero-bg.webp"
+      alt="Collection of rare gold and silver coins displayed at Eagle Coin & Precious Metals in Eagle, Idaho"
+      width="1200"
+      height="800"
       class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/70 to-navy/90"></div>
   </div>
@@ -36,7 +40,7 @@ const {
       </div>
 
       <!-- Main Title -->
-      <h1 class="font-display text-3xl sm:text-5xl lg:text-7xl font-bold text-text-light mb-3 md:mb-6 leading-tight">
+      <h1 class="font-display text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-text-light mb-3 md:mb-6 leading-tight">
         <span class="hero-reveal block" style="--delay: 150ms">Eagle Coin</span>
         <span class="hero-reveal block text-gold" style="--delay: 300ms">&amp; Precious Metals</span>
       </h1>
@@ -71,7 +75,7 @@ const {
       </div>
 
       <!-- Trust Indicators - Google rating only on mobile, all on desktop -->
-      <div class="hero-reveal mt-6 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-text-light/60 text-sm" style="--delay: 800ms">
+      <div class="hero-reveal mt-6 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-text-light/70 text-sm" style="--delay: 800ms">
         <div class="flex items-center gap-2">
           <div class="flex text-gold">
             {[...Array(5)].map(() => (
@@ -80,7 +84,7 @@ const {
               </svg>
             ))}
           </div>
-          <span>5-Star Google Rating</span>
+          <span>4.9-Star Google Rating</span>
         </div>
         <div class="hidden md:flex items-center gap-2">
           <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,14 +104,14 @@ const {
 
   <!-- Spot Prices - Full Width Bar at Bottom (in normal flow) -->
   <div class="hero-reveal relative z-10 flex-shrink-0 bg-navy-light/80 backdrop-blur-sm border-t border-gold/20" style="--delay: 1000ms">
-    <div class="flex items-center justify-center gap-4 sm:gap-8 flex-wrap text-sm py-4 px-4">
+    <div class="flex items-center justify-center gap-2 sm:gap-4 md:gap-8 flex-wrap text-xs sm:text-sm py-3 sm:py-4 px-3 sm:px-4">
       <span class="text-text-light/50 text-xs uppercase tracking-wide">Live Spot</span>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1 sm:gap-2">
         <span class="text-gold font-medium">Gold:</span>
         <span id="hero-gold-price" class="text-text-light font-semibold">Loading...</span>
       </div>
-      <div class="w-px h-4 bg-gold/30"></div>
-      <div class="flex items-center gap-2">
+      <div class="hidden sm:block w-px h-4 bg-gold/30"></div>
+      <div class="flex items-center gap-1 sm:gap-2">
         <span class="text-gold font-medium">Silver:</span>
         <span id="hero-silver-price" class="text-text-light font-semibold">Loading...</span>
       </div>
