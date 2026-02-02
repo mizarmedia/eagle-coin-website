@@ -1,0 +1,102 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Eagle Coin & Precious Metals",
+  subtitle = "Buying and Selling Rare Coins and Bullion Products"
+} = Astro.props;
+---
+
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/hero-bg.jpg"
+      alt="Collection of gold and silver coins"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/70 to-navy/90"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Roundtable Badge -->
+    <div class="inline-flex items-center gap-2 bg-gold/20 border border-gold/40 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
+      <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      <span class="text-gold-light text-sm font-medium">SW Idaho's ONLY Roundtable Authorized Dealer</span>
+    </div>
+
+    <!-- Main Title -->
+    <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-text-light mb-6 leading-tight">
+      <span class="block">Eagle Coin</span>
+      <span class="block text-gold">&amp; Precious Metals</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-xl sm:text-2xl text-text-light/80 mb-8 max-w-2xl mx-auto font-light">
+      {subtitle}
+    </p>
+
+    <!-- Location -->
+    <p class="text-gold/90 text-lg mb-10">
+      Located in Downtown Eagle, Idaho
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/sell"
+        class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gold to-gold-accent text-navy font-semibold rounded-lg shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:scale-105 transition-all duration-300"
+      >
+        Sell Your Coins
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href="/buy"
+        class="inline-flex items-center justify-center px-8 py-4 border-2 border-gold text-gold font-semibold rounded-lg hover:bg-gold/10 hover:scale-105 transition-all duration-300"
+      >
+        Browse Inventory
+      </a>
+    </div>
+
+    <!-- Trust Indicators -->
+    <div class="mt-16 flex flex-wrap justify-center gap-8 text-text-light/60 text-sm">
+      <div class="flex items-center gap-2">
+        <div class="flex text-gold">
+          {[...Array(5)].map(() => (
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+        </div>
+        <span>5-Star Google Rating</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span>Authenticity Guaranteed</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span>House Calls Available</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-gold/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>

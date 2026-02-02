@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SpotPriceTicker from '../components/SpotPriceTicker.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About" description="Learn about David Tine and Eagle Coin & Precious Metals - SW Idaho's trusted Roundtable Trading authorized dealer.">
+  <SpotPriceTicker />
+  <Header />
+
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section class="py-20 bg-navy">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="font-display text-4xl sm:text-5xl font-bold text-text-light mb-6">
+          About Eagle Coin & Precious Metals
+        </h1>
+        <p class="text-text-light/70 text-xl">
+          Your trusted partner in rare coins and bullion since our founding in Eagle, Idaho.
+        </p>
+      </div>
+    </section>
+
+    <!-- Welcome Message -->
+    <section class="py-20 bg-cream">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-xl p-8 lg:p-12 border border-cream-dark">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gold to-gold-accent flex items-center justify-center shadow-lg">
+              <span class="text-navy font-display font-bold text-2xl">DT</span>
+            </div>
+            <div>
+              <h2 class="font-display text-2xl font-bold text-navy">David Tine</h2>
+              <p class="text-gold-accent font-medium">Owner & Proprietor</p>
+            </div>
+          </div>
+
+          <div class="prose prose-lg max-w-none text-text-dark/80">
+            <p class="text-xl leading-relaxed mb-6">
+              Welcome! Thank you for visiting the Eagle Coin & Precious Metals website.
+            </p>
+
+            <p class="leading-relaxed mb-6">
+              My name is David Tine, the owner and sole proprietor of Eagle Coin & Precious Metals, LLC. Conveniently located in downtown Eagle, we're just minutes away from Meridian, Boise, Garden City and Star.
+            </p>
+
+            <p class="leading-relaxed mb-6">
+              With years of hands-on experience and self-teaching in numismatics, I've been working coins on a national stage for years. My passion for rare coins and precious metals drives everything we do at Eagle Coin.
+            </p>
+
+            <p class="leading-relaxed">
+              We specialize in United States and Latin American coinage, as well as bullion products including both new releases and collectible vintage pieces. Our inventory is priced reasonably, so items sell quickly!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roundtable Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-full px-4 py-2 mb-6">
+            <svg class="w-5 h-5 text-gold-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-gold-accent text-sm font-medium">Authorized Dealer</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-navy mb-4">
+            Roundtable Trading Member
+          </h2>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-8 lg:p-12 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gold/20 flex items-center justify-center">
+            <svg class="w-10 h-10 text-gold" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+
+          <p class="text-text-light/90 text-lg mb-6 leading-relaxed max-w-2xl mx-auto">
+            Eagle Coin & Precious Metals is SW Idaho's <strong class="text-gold">ONLY</strong> authorized Roundtable Trading dealer, and one of only 3 in the entire state of Idaho.
+          </p>
+
+          <p class="text-text-light/70 mb-8 leading-relaxed max-w-2xl mx-auto">
+            Roundtable Trading is a national numismatic (coin) wholesale network consisting of over 300 member coin dealers across the United States. Not just anyone can be a member. Dealers must be approved by the Board of Directors in order to be admitted, maintaining high standards of integrity and expertise.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+            <div class="bg-gold/10 rounded-xl p-4">
+              <div class="text-3xl font-display font-bold text-gold mb-1">300+</div>
+              <div class="text-text-light/60 text-sm">Member Dealers</div>
+            </div>
+            <div class="bg-gold/10 rounded-xl p-4">
+              <div class="text-3xl font-display font-bold text-gold mb-1">1 of 3</div>
+              <div class="text-text-light/60 text-sm">In Idaho</div>
+            </div>
+            <div class="bg-gold/10 rounded-xl p-4">
+              <div class="text-3xl font-display font-bold text-gold mb-1">ONLY</div>
+              <div class="text-text-light/60 text-sm">In SW Idaho</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Commitment -->
+    <section class="py-20 bg-cream-dark">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold text-navy text-center mb-12">
+          Our Commitment to You
+        </h2>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-cream">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-navy mb-2">Authenticity Guaranteed</h3>
+            <p class="text-text-dark/70">Every coin and bullion product is guaranteed to be genuine. Your peace of mind is our priority.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-cream">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-navy mb-2">Fair Pricing</h3>
+            <p class="text-text-dark/70">All offers are transparent and based on current market prices. We pay more than pawn shops for quality coins.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-cream">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-navy mb-2">House Calls Available</h3>
+            <p class="text-text-dark/70">Can't make it to the shop? We offer house calls for your convenience, especially for larger collections.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-cream">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-navy mb-2">Expert Knowledge</h3>
+            <p class="text-text-dark/70">Years of hands-on experience in numismatics, working coins on a national stage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-r from-gold/10 via-gold-accent/10 to-gold/10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-display text-3xl font-bold text-navy mb-6">
+          Ready to Work With Us?
+        </h2>
+        <p class="text-text-dark/70 text-lg mb-8 max-w-2xl mx-auto">
+          Whether you're looking to sell your collection or add to it, we're here to help.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/sell" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gold to-gold-accent text-navy font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+            Sell Your Coins
+          </a>
+          <a href="/buy" class="inline-flex items-center justify-center px-8 py-4 border-2 border-navy text-navy font-semibold rounded-lg hover:bg-navy hover:text-text-light transition-all duration-300">
+            Browse Inventory
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

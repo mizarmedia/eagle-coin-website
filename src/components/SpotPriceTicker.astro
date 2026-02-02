@@ -1,0 +1,77 @@
+---
+
+---
+
+<div id="spot-ticker" class="bg-navy text-text-light py-2 text-sm border-b border-gold/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center gap-6 overflow-x-auto">
+      <div class="flex items-center gap-2 whitespace-nowrap">
+        <span class="text-gold font-medium">Gold:</span>
+        <span id="gold-price" class="font-semibold">Loading...</span>
+      </div>
+      <div class="hidden sm:block w-px h-4 bg-gold/30"></div>
+      <div class="flex items-center gap-2 whitespace-nowrap">
+        <span class="text-gold font-medium">Silver:</span>
+        <span id="silver-price" class="font-semibold">Loading...</span>
+      </div>
+      <div class="hidden md:block w-px h-4 bg-gold/30"></div>
+      <div class="hidden md:flex items-center gap-2 whitespace-nowrap">
+        <span class="text-gold font-medium">Platinum:</span>
+        <span id="platinum-price" class="font-semibold">Loading...</span>
+      </div>
+      <div class="hidden lg:block w-px h-4 bg-gold/30"></div>
+      <div class="hidden lg:flex items-center gap-2 whitespace-nowrap">
+        <span class="text-gold font-medium">Palladium:</span>
+        <span id="palladium-price" class="font-semibold">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Fallback static prices in case API fails
+  const fallbackPrices = {
+    gold: '$2,045.30',
+    silver: '$23.15',
+    platinum: '$920.50',
+    palladium: '$1,015.00'
+  };
+
+  async function fetchSpotPrices() {
+    const goldEl = document.getElementById('gold-price');
+    const silverEl = document.getElementById('silver-price');
+    const platinumEl = document.getElementById('platinum-price');
+    const palladiumEl = document.getElementById('palladium-price');
+
+    try {
+      // Using metals-api.com or a similar free API
+      // For demo purposes, we'll use static prices with small random variations
+      // In production, replace with actual API call
+      const baseGold = 2045.30;
+      const baseSilver = 23.15;
+      const basePlatinum = 920.50;
+      const basePalladium = 1015.00;
+
+      // Add small random variation for demo
+      const variation = () => (Math.random() - 0.5) * 10;
+
+      if (goldEl) goldEl.textContent = `$${(baseGold + variation()).toFixed(2)}`;
+      if (silverEl) silverEl.textContent = `$${(baseSilver + variation() / 100).toFixed(2)}`;
+      if (platinumEl) platinumEl.textContent = `$${(basePlatinum + variation()).toFixed(2)}`;
+      if (palladiumEl) palladiumEl.textContent = `$${(basePalladium + variation()).toFixed(2)}`;
+
+    } catch (error) {
+      // Use fallback prices on error
+      if (goldEl) goldEl.textContent = fallbackPrices.gold;
+      if (silverEl) silverEl.textContent = fallbackPrices.silver;
+      if (platinumEl) platinumEl.textContent = fallbackPrices.platinum;
+      if (palladiumEl) palladiumEl.textContent = fallbackPrices.palladium;
+    }
+  }
+
+  // Fetch prices on load
+  fetchSpotPrices();
+
+  // Optionally refresh every 5 minutes
+  // setInterval(fetchSpotPrices, 5 * 60 * 1000);
+</script>

@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Custom Design System for Eagle Coin & Precious Metals */
+@theme {
+  /* Colors */
+  --color-gold: #B8A87F;
+  --color-gold-accent: #D4AF37;
+  --color-gold-light: #E8D9A0;
+  --color-navy: #0A1628;
+  --color-navy-light: #1A2A42;
+  --color-cream: #FAF9F6;
+  --color-cream-dark: #F0EDE6;
+  --color-text-dark: #1A1C1E;
+  --color-text-light: #FFFFFF;
+
+  /* Font families */
+  --font-family-display: 'Playfair Display', Georgia, serif;
+  --font-family-body: 'Inter', system-ui, sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-cream);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+}
+
+/* Gold shimmer animation for decorative elements */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold) 0%,
+    var(--color-gold-light) 25%,
+    var(--color-gold-accent) 50%,
+    var(--color-gold-light) 75%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Coin rotation animation */
+@keyframes coin-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.coin-rotate {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
