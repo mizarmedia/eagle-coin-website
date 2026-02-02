@@ -2,14 +2,15 @@
 
 ---
 
-<div id="spot-ticker" class="bg-navy text-text-light py-2 text-sm border-b border-gold/20">
+<div id="spot-ticker" class="bg-navy text-text-light py-3 text-sm border-b border-gold/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-center gap-6 overflow-x-auto">
+    <div class="flex items-center justify-center gap-6 sm:gap-8 flex-wrap">
+      <div class="text-text-light/60 text-xs uppercase tracking-wide hidden sm:block">Spot Prices</div>
       <div class="flex items-center gap-2 whitespace-nowrap">
         <span class="text-gold font-medium">Gold:</span>
         <span id="gold-price" class="font-semibold">Loading...</span>
       </div>
-      <div class="hidden sm:block w-px h-4 bg-gold/30"></div>
+      <div class="w-px h-4 bg-gold/30"></div>
       <div class="flex items-center gap-2 whitespace-nowrap">
         <span class="text-gold font-medium">Silver:</span>
         <span id="silver-price" class="font-semibold">Loading...</span>
@@ -29,13 +30,35 @@
 </div>
 
 <script>
-  // Fallback static prices in case API fails
-  const fallbackPrices = {
-    gold: '$2,045.30',
-    silver: '$23.15',
-    platinum: '$920.50',
-    palladium: '$1,015.00'
-  };
+  // Store previous prices for comparison
+  const previousPrices: Record<string, number> = {};
+
+  function animatePriceChange(el: HTMLElement, newPrice: number, metalKey: string) {
+    const oldPrice = previousPrices[metalKey];
+    previousPrices[metalKey] = newPrice;
+
+    el.textContent = `$${newPrice.toFixed(2)}`;
+
+    // Remove any existing animation classes
+    el.classList.remove('price-update', 'price-up', 'price-down');
+
+    // Only animate if we have a previous price to compare
+    if (oldPrice !== undefined && oldPrice !== newPrice) {
+      if (newPrice > oldPrice) {
+        el.classList.add('price-up');
+      } else {
+        el.classList.add('price-down');
+      }
+    } else if (oldPrice === undefined) {
+      // First load - just pulse
+      el.classList.add('price-update');
+    }
+
+    // Remove animation class after animation completes
+    setTimeout(() => {
+      el.classList.remove('price-update', 'price-up', 'price-down');
+    }, 300);
+  }
 
   async function fetchSpotPrices() {
     const goldEl = document.getElementById('gold-price');
@@ -44,34 +67,59 @@
     const palladiumEl = document.getElementById('palladium-price');
 
     try {
-      // Using metals-api.com or a similar free API
-      // For demo purposes, we'll use static prices with small random variations
-      // In production, replace with actual API call
-      const baseGold = 2045.30;
-      const baseSilver = 23.15;
-      const basePlatinum = 920.50;
-      const basePalladium = 1015.00;
+      // Using metals.dev free API for live spot prices
+      const response = await fetch('https://api.metals.dev/v1/latest?api_key=demo&currency=USD&unit=toz');
 
-      // Add small random variation for demo
-      const variation = () => (Math.random() - 0.5) * 10;
+      if (!response.ok) {
+        throw new Error('API request failed');
+      }
 
-      if (goldEl) goldEl.textContent = `$${(baseGold + variation()).toFixed(2)}`;
-      if (silverEl) silverEl.textContent = `$${(baseSilver + variation() / 100).toFixed(2)}`;
-      if (platinumEl) platinumEl.textContent = `$${(basePlatinum + variation()).toFixed(2)}`;
-      if (palladiumEl) palladiumEl.textContent = `$${(basePalladium + variation()).toFixed(2)}`;
+      const data = await response.json();
 
+      if (data && data.metals) {
+        if (goldEl && data.metals.gold) {
+          animatePriceChange(goldEl, data.metals.gold, 'gold');
+        }
+        if (silverEl && data.metals.silver) {
+          animatePriceChange(silverEl, data.metals.silver, 'silver');
+        }
+        if (platinumEl && data.metals.platinum) {
+          animatePriceChange(platinumEl, data.metals.platinum, 'platinum');
+        }
+        if (palladiumEl && data.metals.palladium) {
+          animatePriceChange(palladiumEl, data.metals.palladium, 'palladium');
+        }
+      } else {
+        throw new Error('Invalid data format');
+      }
     } catch (error) {
-      // Use fallback prices on error
-      if (goldEl) goldEl.textContent = fallbackPrices.gold;
-      if (silverEl) silverEl.textContent = fallbackPrices.silver;
-      if (platinumEl) platinumEl.textContent = fallbackPrices.platinum;
-      if (palladiumEl) palladiumEl.textContent = fallbackPrices.palladium;
+      console.log('Using fallback price source...');
+      // Fallback to goldapi.io or show cached/static prices
+      try {
+        // Try alternative free API
+        const altResponse = await fetch('https://api.goldapi.io/v1/XAU/USD', {
+          headers: { 'x-access-token': 'goldapi-demo' }
+        });
+
+        if (altResponse.ok) {
+          const altData = await altResponse.json();
+          if (goldEl && altData.price) {
+            animatePriceChange(goldEl, altData.price, 'gold');
+          }
+        }
+      } catch {
+        // Final fallback - show message instead of fake prices
+        if (goldEl) goldEl.textContent = 'Call for quote';
+        if (silverEl) silverEl.textContent = 'Call for quote';
+        if (platinumEl) platinumEl.textContent = 'Call for quote';
+        if (palladiumEl) palladiumEl.textContent = 'Call for quote';
+      }
     }
   }
 
   // Fetch prices on load
   fetchSpotPrices();
 
-  // Optionally refresh every 5 minutes
-  // setInterval(fetchSpotPrices, 5 * 60 * 1000);
+  // Refresh every 5 minutes
+  setInterval(fetchSpotPrices, 5 * 60 * 1000);
 </script>

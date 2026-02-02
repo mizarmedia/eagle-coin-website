@@ -6,12 +6,11 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Buy From Us" description="Shop rare coins, US and Latin American coinage, and bullion products at Eagle Coin & Precious Metals in Eagle, Idaho.">
-  <SpotPriceTicker />
   <Header />
 
-  <main class="pt-24">
+  <main>
     <!-- Hero Section -->
-    <section class="py-20 bg-navy">
+    <section class="pt-32 pb-20 bg-navy">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="font-display text-4xl sm:text-5xl font-bold text-text-light mb-6">
           Buy Rare Coins & Bullion
@@ -204,5 +203,6 @@ import Footer from '../components/Footer.astro';
     </section>
   </main>
 
+  <SpotPriceTicker />
   <Footer />
 </Layout>

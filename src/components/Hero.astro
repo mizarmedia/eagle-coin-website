@@ -28,7 +28,7 @@ const {
   <div class="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-6 md:py-12">
     <div class="max-w-5xl mx-auto text-center">
       <!-- Roundtable Badge -->
-      <div class="inline-flex items-center gap-2 bg-gold/20 border border-gold/40 rounded-full px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-8 backdrop-blur-sm">
+      <div class="hero-reveal inline-flex items-center gap-2 bg-gold/20 border border-gold/40 rounded-full px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-8 backdrop-blur-sm" style="--delay: 0ms">
         <svg class="w-4 h-4 md:w-5 md:h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
@@ -37,25 +37,25 @@ const {
 
       <!-- Main Title -->
       <h1 class="font-display text-3xl sm:text-5xl lg:text-7xl font-bold text-text-light mb-3 md:mb-6 leading-tight">
-        <span class="block">Eagle Coin</span>
-        <span class="block text-gold">&amp; Precious Metals</span>
+        <span class="hero-reveal block" style="--delay: 150ms">Eagle Coin</span>
+        <span class="hero-reveal block text-gold" style="--delay: 300ms">&amp; Precious Metals</span>
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-lg sm:text-xl md:text-2xl text-text-light/80 mb-4 md:mb-8 max-w-2xl mx-auto font-light">
+      <p class="hero-reveal text-lg sm:text-xl md:text-2xl text-text-light/80 mb-4 md:mb-8 max-w-2xl mx-auto font-light" style="--delay: 450ms">
         {subtitle}
       </p>
 
       <!-- Location -->
-      <p class="text-gold/90 text-base md:text-lg mb-6 md:mb-10">
+      <p class="hero-reveal text-gold/90 text-base md:text-lg mb-6 md:mb-10" style="--delay: 550ms">
         Located in Downtown Eagle, Idaho
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+      <div class="hero-reveal flex flex-col sm:flex-row gap-3 md:gap-4 justify-center" style="--delay: 650ms">
         <a
           href="/sell"
-          class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-gold to-gold-accent text-navy font-semibold rounded-lg shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:scale-105 transition-all duration-300 min-h-[44px]"
+          class="btn-primary-glow inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-gold to-gold-accent text-navy font-semibold rounded-lg shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:scale-105 transition-all duration-300 min-h-[44px]"
         >
           Sell Your Coins
           <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,7 +71,7 @@ const {
       </div>
 
       <!-- Trust Indicators - Google rating only on mobile, all on desktop -->
-      <div class="mt-6 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-text-light/60 text-sm">
+      <div class="hero-reveal mt-6 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-text-light/60 text-sm" style="--delay: 800ms">
         <div class="flex items-center gap-2">
           <div class="flex text-gold">
             {[...Array(5)].map(() => (
@@ -99,7 +99,7 @@ const {
   </div>
 
   <!-- Spot Prices - Full Width Bar at Bottom (in normal flow) -->
-  <div class="relative z-10 flex-shrink-0 bg-navy-light/80 backdrop-blur-sm border-t border-gold/20">
+  <div class="hero-reveal relative z-10 flex-shrink-0 bg-navy-light/80 backdrop-blur-sm border-t border-gold/20" style="--delay: 1000ms">
     <div class="flex items-center justify-center gap-4 sm:gap-8 flex-wrap text-sm py-4 px-4">
       <span class="text-text-light/50 text-xs uppercase tracking-wide">Live Spot</span>
       <div class="flex items-center gap-2">
@@ -121,6 +121,36 @@ const {
 </section>
 
 <script>
+  // Store previous prices for hero comparison
+  const heroPreviousPrices: Record<string, number> = {};
+
+  function animateHeroPriceChange(el: HTMLElement, newPrice: number, metalKey: string) {
+    const oldPrice = heroPreviousPrices[metalKey];
+    heroPreviousPrices[metalKey] = newPrice;
+
+    el.textContent = `$${newPrice.toFixed(2)}`;
+
+    // Remove any existing animation classes
+    el.classList.remove('price-update', 'price-up', 'price-down');
+
+    // Only animate if we have a previous price to compare
+    if (oldPrice !== undefined && oldPrice !== newPrice) {
+      if (newPrice > oldPrice) {
+        el.classList.add('price-up');
+      } else {
+        el.classList.add('price-down');
+      }
+    } else if (oldPrice === undefined) {
+      // First load - just pulse
+      el.classList.add('price-update');
+    }
+
+    // Remove animation class after animation completes
+    setTimeout(() => {
+      el.classList.remove('price-update', 'price-up', 'price-down');
+    }, 300);
+  }
+
   async function fetchHeroSpotPrices() {
     const goldEl = document.getElementById('hero-gold-price');
     const silverEl = document.getElementById('hero-silver-price');
@@ -134,9 +164,9 @@ const {
       const data = await response.json();
 
       if (data && data.metals) {
-        if (goldEl && data.metals.gold) goldEl.textContent = `$${data.metals.gold.toFixed(2)}`;
-        if (silverEl && data.metals.silver) silverEl.textContent = `$${data.metals.silver.toFixed(2)}`;
-        if (platinumEl && data.metals.platinum) platinumEl.textContent = `$${data.metals.platinum.toFixed(2)}`;
+        if (goldEl && data.metals.gold) animateHeroPriceChange(goldEl, data.metals.gold, 'hero-gold');
+        if (silverEl && data.metals.silver) animateHeroPriceChange(silverEl, data.metals.silver, 'hero-silver');
+        if (platinumEl && data.metals.platinum) animateHeroPriceChange(platinumEl, data.metals.platinum, 'hero-platinum');
       } else {
         throw new Error('Invalid data');
       }

@@ -27,5 +27,20 @@ const { title, description = "Eagle Coin & Precious Metals - SW Idaho's trusted 
   </head>
   <body class="min-h-screen bg-cream text-text-dark">
     <slot />
+
+    <script>
+      // Scroll Reveal System
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = entry.target.dataset.revealDelay || 0;
+            setTimeout(() => entry.target.classList.add('revealed'), parseInt(delay));
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    </script>
   </body>
 </html>
