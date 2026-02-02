@@ -29,6 +29,12 @@ const { title, description = "Eagle Coin & Precious Metals - SW Idaho's trusted 
     <slot />
 
     <script>
+      // Prevent browser scroll restoration from jumping to middle of page
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+
       // Scroll Reveal System
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
