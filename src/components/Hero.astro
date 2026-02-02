@@ -10,7 +10,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+<section class="relative min-h-[70vh] md:min-h-screen flex flex-col overflow-hidden">
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0">
     <img
@@ -21,82 +21,132 @@ const {
     <div class="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/70 to-navy/90"></div>
   </div>
 
-  <!-- Content -->
-  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <!-- Roundtable Badge -->
-    <div class="inline-flex items-center gap-2 bg-gold/20 border border-gold/40 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
-      <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-      </svg>
-      <span class="text-gold-light text-sm font-medium">SW Idaho's ONLY Roundtable Authorized Dealer</span>
-    </div>
+  <!-- Spacer for fixed header -->
+  <div class="h-16 md:h-20 flex-shrink-0"></div>
 
-    <!-- Main Title -->
-    <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-text-light mb-6 leading-tight">
-      <span class="block">Eagle Coin</span>
-      <span class="block text-gold">&amp; Precious Metals</span>
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="text-xl sm:text-2xl text-text-light/80 mb-8 max-w-2xl mx-auto font-light">
-      {subtitle}
-    </p>
-
-    <!-- Location -->
-    <p class="text-gold/90 text-lg mb-10">
-      Located in Downtown Eagle, Idaho
-    </p>
-
-    <!-- CTA Buttons -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="/sell"
-        class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gold to-gold-accent text-navy font-semibold rounded-lg shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:scale-105 transition-all duration-300"
-      >
-        Sell Your Coins
-        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  <!-- Main Content - grows to fill space and centers content -->
+  <div class="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-6 md:py-12">
+    <div class="max-w-5xl mx-auto text-center">
+      <!-- Roundtable Badge -->
+      <div class="inline-flex items-center gap-2 bg-gold/20 border border-gold/40 rounded-full px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-8 backdrop-blur-sm">
+        <svg class="w-4 h-4 md:w-5 md:h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
-      </a>
-      <a
-        href="/buy"
-        class="inline-flex items-center justify-center px-8 py-4 border-2 border-gold text-gold font-semibold rounded-lg hover:bg-gold/10 hover:scale-105 transition-all duration-300"
-      >
-        Browse Inventory
-      </a>
-    </div>
+        <span class="text-gold-light text-xs md:text-sm font-medium">SW Idaho's ONLY Roundtable Authorized Dealer</span>
+      </div>
 
-    <!-- Trust Indicators -->
-    <div class="mt-16 flex flex-wrap justify-center gap-8 text-text-light/60 text-sm">
-      <div class="flex items-center gap-2">
-        <div class="flex text-gold">
-          {[...Array(5)].map(() => (
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-          ))}
+      <!-- Main Title -->
+      <h1 class="font-display text-3xl sm:text-5xl lg:text-7xl font-bold text-text-light mb-3 md:mb-6 leading-tight">
+        <span class="block">Eagle Coin</span>
+        <span class="block text-gold">&amp; Precious Metals</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl md:text-2xl text-text-light/80 mb-4 md:mb-8 max-w-2xl mx-auto font-light">
+        {subtitle}
+      </p>
+
+      <!-- Location -->
+      <p class="text-gold/90 text-base md:text-lg mb-6 md:mb-10">
+        Located in Downtown Eagle, Idaho
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+        <a
+          href="/sell"
+          class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-gold to-gold-accent text-navy font-semibold rounded-lg shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:scale-105 transition-all duration-300 min-h-[44px]"
+        >
+          Sell Your Coins
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="/buy"
+          class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 border-2 border-gold text-gold font-semibold rounded-lg hover:bg-gold/10 hover:scale-105 transition-all duration-300 min-h-[44px]"
+        >
+          Browse Inventory
+        </a>
+      </div>
+
+      <!-- Trust Indicators - Google rating only on mobile, all on desktop -->
+      <div class="mt-6 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-8 text-text-light/60 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="flex text-gold">
+            {[...Array(5)].map(() => (
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <span>5-Star Google Rating</span>
         </div>
-        <span>5-Star Google Rating</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-        <span>Authenticity Guaranteed</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-        <span>House Calls Available</span>
+        <div class="hidden md:flex items-center gap-2">
+          <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>Authenticity Guaranteed</span>
+        </div>
+        <div class="hidden md:flex items-center gap-2">
+          <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          <span>House Calls Available</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-gold/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-    </svg>
+  <!-- Spot Prices - Full Width Bar at Bottom (in normal flow) -->
+  <div class="relative z-10 flex-shrink-0 bg-navy-light/80 backdrop-blur-sm border-t border-gold/20">
+    <div class="flex items-center justify-center gap-4 sm:gap-8 flex-wrap text-sm py-4 px-4">
+      <span class="text-text-light/50 text-xs uppercase tracking-wide">Live Spot</span>
+      <div class="flex items-center gap-2">
+        <span class="text-gold font-medium">Gold:</span>
+        <span id="hero-gold-price" class="text-text-light font-semibold">Loading...</span>
+      </div>
+      <div class="w-px h-4 bg-gold/30"></div>
+      <div class="flex items-center gap-2">
+        <span class="text-gold font-medium">Silver:</span>
+        <span id="hero-silver-price" class="text-text-light font-semibold">Loading...</span>
+      </div>
+      <div class="hidden sm:block w-px h-4 bg-gold/30"></div>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="text-gold font-medium">Platinum:</span>
+        <span id="hero-platinum-price" class="text-text-light font-semibold">Loading...</span>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  async function fetchHeroSpotPrices() {
+    const goldEl = document.getElementById('hero-gold-price');
+    const silverEl = document.getElementById('hero-silver-price');
+    const platinumEl = document.getElementById('hero-platinum-price');
+
+    try {
+      const response = await fetch('https://api.metals.dev/v1/latest?api_key=demo&currency=USD&unit=toz');
+
+      if (!response.ok) throw new Error('API request failed');
+
+      const data = await response.json();
+
+      if (data && data.metals) {
+        if (goldEl && data.metals.gold) goldEl.textContent = `$${data.metals.gold.toFixed(2)}`;
+        if (silverEl && data.metals.silver) silverEl.textContent = `$${data.metals.silver.toFixed(2)}`;
+        if (platinumEl && data.metals.platinum) platinumEl.textContent = `$${data.metals.platinum.toFixed(2)}`;
+      } else {
+        throw new Error('Invalid data');
+      }
+    } catch (error) {
+      if (goldEl) goldEl.textContent = 'Call for quote';
+      if (silverEl) silverEl.textContent = 'Call for quote';
+      if (platinumEl) platinumEl.textContent = 'Call for quote';
+    }
+  }
+
+  fetchHeroSpotPrices();
+  setInterval(fetchHeroSpotPrices, 5 * 60 * 1000);
+</script>
